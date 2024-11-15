@@ -1,5 +1,11 @@
 let player = 0;
 let computer = 0;
+
+let playerScore = document.getElementById('player');
+let computerScore = document.getElementById('computer');
+playerScore.innerHTML = `You: ${player}`;
+computerScore.innerHTML = `Computer: ${computer}`;
+
 // objects for the game, winning combo and losing combo
 const winGame = {
     rock: 'scissors',
@@ -11,13 +17,17 @@ function randomPick(){
     let weapon = ['rock', 'paper', 'scissors'];
     return weapon[Math.floor(Math.random() * weapon.length)]
 }
+let playerPick;
+document.addEventListener('click', function(e){
+    playerPick = e.target.textContent.toLowerCase();
+    playGame()
+})
 // looks for player/computer pick in winGame obj, if found, then player wins
 // if same pick, tied
 // if not, player loses  
 function playGame(){
-    let computerPick = randomPick();
     // assigns prompt answer to playerPick variable
-    let playerPick = (prompt('Rock, Paper, or Scissors').toLowerCase());
+    let computerPick = randomPick();
 
     console.log(`player: ${playerPick}, computer: ${computerPick}`)
     if(winGame[playerPick] == computerPick){
@@ -31,7 +41,7 @@ function playGame(){
         console.log('You lost');
         console.log(player, computer);
     }
-    playAgain()
+    // playAgain()
 }
 // if player confirms play again, then the playGame function will run again
 // if not, then the scores are reset 
@@ -45,4 +55,3 @@ function playAgain(){
     }
 }
 
-playGame()
