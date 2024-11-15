@@ -2,6 +2,7 @@
 // if there's a winning combo, give player a point, ask if they want to play again,
 // if there's a losing combo, give computer a point, ask if they want to play again
 
+
 let player = 0;
 let computer = 0;
 
@@ -17,7 +18,6 @@ function randomPick(){
     let weapon = ['rock', 'paper', 'scissors'];
     return weapon[Math.floor(Math.random() * weapon.length)]
 }
-
 // function playGame that will call the random pick function to get the computer's selection, asks the user for a selection, and then scans the game object to see if there's a match for a win,
 function playGame(){
     let computerPick = randomPick();
@@ -34,6 +34,17 @@ function playGame(){
         computer++;
         console.log('You lost');
         console.log(player, computer);
+    }
+    playAgain()
+}
+
+function playAgain(){
+    let answer = confirm('Play again?');
+    if(answer === true){
+        playGame()
+    } else {
+        player = 0;
+        computer = 0;
     }
 }
 
