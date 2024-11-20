@@ -25,6 +25,10 @@ document.addEventListener('click', function(e){
 // looks for player/computer pick in winGame obj, if found, then player wins
 // if same pick, tied
 // if not, player loses  
+let messageBox = document.getElementById('messageBox');
+let message =  document.createElement('h2');
+messageBox.append(message);
+
 function playGame(){
     // assigns prompt answer to playerPick variable
     let computerPick = randomPick();
@@ -32,26 +36,36 @@ function playGame(){
     console.log(`player: ${playerPick}, computer: ${computerPick}`)
     if(winGame[playerPick] == computerPick){
         player++;
-        console.log('You won!');
-        console.log(player, computer);
+        message.textContent = 'You won!';
     } else if(playerPick == computerPick) {
-        console.log('You tied')
+        message.textContent = 'You tied';
     } else {
         computer++;
-        console.log('You lost');
-        console.log(player, computer);
+        message.textContent = 'You lost';
     }
-    // playAgain()
+    playAgain()
 }
 // if player confirms play again, then the playGame function will run again
 // if not, then the scores are reset 
 function playAgain(){
-    let answer = confirm('Play again?');
-    if(answer === true){
-        playGame()
-    } else {
-        player = 0;
-        computer = 0;
-    }
+    
+    let againPrompt = document.createElement('h2');
+    messageBox.append(againPrompt);
+    againPrompt.textContent = 'Play again?';
+
+    let yes = document.createElement('p');
+    againPrompt.append(yes);
+    yes.textContent = 'yes'
+
+    let no = document.createElement('p');
+    againPrompt.append(no);
+    no.textContent= 'no';
+    // if(answer === true){
+    //     message.innerHTML = '';
+    //     playGame()
+    // } else {
+    //     player = 0;
+    //     computer = 0;
+    // }
 }
 
